@@ -2,6 +2,7 @@
 
 import {
   buildDesignExplorationRenderers,
+  type DesignExplorationBaselineOption,
   type DesignExplorationConfig,
   type MobbinReference,
 } from "proto-plugin";
@@ -98,7 +99,7 @@ const renderers = buildDesignExplorationRenderers<
 >(
   EVENT_TYPES_SECRET_EVENTS_TRANSITION_VARIANT_OPTIONS,
   (variant) => renderTransitionPreview(variant),
-  EVENT_TYPES_SECRET_EVENTS_TRANSITION_BASELINE,
+  EVENT_TYPES_SECRET_EVENTS_TRANSITION_BASELINE as unknown as DesignExplorationBaselineOption<EventTypesSecretEventsTransitionVariant>,
 );
 
 export function buildEventTypesSecretEventsTransitionDesignExplorationConfig(
@@ -112,7 +113,7 @@ export function buildEventTypesSecretEventsTransitionDesignExplorationConfig(
     variant,
     onVariantChange,
     options: EVENT_TYPES_SECRET_EVENTS_TRANSITION_VARIANT_OPTIONS,
-    baseline: EVENT_TYPES_SECRET_EVENTS_TRANSITION_BASELINE,
+    baseline: EVENT_TYPES_SECRET_EVENTS_TRANSITION_BASELINE as unknown as DesignExplorationBaselineOption<EventTypesSecretEventsTransitionVariant>,
     defaultVariant: DEFAULT_EVENT_TYPES_SECRET_EVENTS_TRANSITION_VARIANT,
     renderers,
     brief: {

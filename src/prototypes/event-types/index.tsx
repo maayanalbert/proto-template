@@ -6,6 +6,7 @@ import {
   PrototypeSpecPanelContent,
   usePrototypeComments,
   usePrototypeReviewOptional,
+  type PrototypeStateCanvasConfig,
 } from "proto-plugin";
 import { useCallback, useEffect, useState } from "react";
 
@@ -140,7 +141,9 @@ export default function EventTypesPage() {
   useEffect(() => {
     if (!setStateCanvasConfig) return;
 
-    setStateCanvasConfig(buildEventTypesStateCanvasConfig(setPreviewState));
+    setStateCanvasConfig(
+      buildEventTypesStateCanvasConfig(setPreviewState) as PrototypeStateCanvasConfig,
+    );
 
     return () => setStateCanvasConfig(null);
   }, [setPreviewState, setStateCanvasConfig]);
@@ -218,7 +221,7 @@ export default function EventTypesPage() {
         buildAgentPrompt={(entry, origin) =>
           buildPrAgentPrompt(entry, PR_SPLIT_ENTRIES, PR_SPLIT_CONFIG, origin)
         }
-        onPrNavigate={handlePrNavigate}
+        onPrNavigate={(entry) => handlePrNavigate(entry as EventTypesPrSplitEntry)}
         selectedPrOrder={selectedPrOrder}
         defaultPreviewPath={PR_SPLIT_CONFIG.defaultPreviewPath}
         vercelProjectName={PR_SPLIT_CONFIG.vercelProjectName}

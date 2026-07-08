@@ -58,7 +58,7 @@ export function cnMerge(...inputs: Parameters<typeof cn>) {
 
 export function NeutralButton({
   className,
-  variant = "primary",
+  variant = "button",
   color,
   children,
   StartIcon,

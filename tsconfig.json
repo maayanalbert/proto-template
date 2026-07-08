@@ -15,7 +15,8 @@
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@prototype/*": ["./node_modules/proto-plugin/src/*"]
     }
   },
   "include": [
