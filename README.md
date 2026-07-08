@@ -11,7 +11,7 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:1985](http://localhost:1985).
+Open [http://localhost:1999](http://localhost:1999).
 
 ## proto-plugin dependency
 
@@ -33,7 +33,7 @@ See `node_modules/proto-plugin/README.md` and `AGENTS.md` for the full host setu
 
 | Command | Description |
 | --- | --- |
-| `pnpm dev` | Dev server on port **1985** |
+| `pnpm dev` | Dev server on port **1999** |
 | `pnpm verify:prototype-ids` | Check component id wiring |
 | `pnpm verify:prototype-preview-states` | Check preview state registries |
 | `pnpm share-prototype <slug>` | Deploy a prototype preview |
