@@ -15,16 +15,10 @@ Open [http://localhost:1985](http://localhost:1985).
 
 ## proto-plugin dependency
 
-This template depends on `proto-plugin` via a local path while the package is developed alongside this repo:
-
-```json
-"proto-plugin": "file:../proto-plugin/packages/prototype"
-```
-
-After `proto-plugin@0.1.3` is published to npm, switch to:
+Installed from npm:
 
 ```bash
-pnpm add proto-plugin@^0.1.3
+pnpm add proto-plugin@^0.1.4
 ```
 
 ## Optional: link a source app
