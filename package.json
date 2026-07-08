@@ -13,13 +13,14 @@
     "link-source-db": "pnpm --dir node_modules/proto-plugin link-source-db",
     "verify:prototype-ids": "pnpm --dir node_modules/proto-plugin verify:prototype-ids",
     "verify:prototype-preview-states": "pnpm --dir node_modules/proto-plugin verify:prototype-preview-states",
-    "share-prototype": "pnpm --dir node_modules/proto-plugin share-prototype"
+    "share-prototype": "pnpm --dir node_modules/proto-plugin share-prototype",
+    "setup-host": "pnpm --dir node_modules/proto-plugin setup-host"
   },
   "dependencies": {
     "clsx": "^2.1.0",
     "lucide-react": "^0.543.0",
     "next": "16.2.9",
-    "proto-plugin": "^0.1.5",
+    "proto-plugin": "0.1.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sonner": "^1.7.4",
