@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@source "../../node_modules/proto-plugin/src/**/*.{js,ts,jsx,tsx}";
+@source "../prototypes/**/*.{js,ts,jsx,tsx}";
+
+@import "./product-tokens.css";
+
+/*
+  Tool semantic colors — self-referential so utilities resolve from
+  [data-prototype-root] at runtime (see proto-plugin README).
+*/
+@theme inline {
+  --color-foreground: var(--color-foreground);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-background: var(--color-background);
+  --color-card: var(--color-card);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-destructive: var(--color-destructive);
+}
+
+body {
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

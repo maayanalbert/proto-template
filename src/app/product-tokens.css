@@ -1,0 +1,92 @@
+/* Neutral product tokens for prototype preview content.
+   Scoped to [data-prototype-screenshot] so tool chrome theme never leaks in. */
+
+[data-prototype-root] [data-prototype-screenshot],
+[data-prototype-screenshot] {
+  color-scheme: light;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+
+  --product-bg: #ffffff;
+  --product-bg-muted: #f8fafc;
+  --product-bg-subtle: #f1f5f9;
+  --product-bg-emphasis: #e2e8f0;
+  --product-text: #334155;
+  --product-text-subtle: #64748b;
+  --product-text-emphasis: #0f172a;
+  --product-text-default: #1e293b;
+  --product-border: #e2e8f0;
+  --product-border-subtle: #e2e8f0;
+  --product-border-muted: #e2e8f0;
+  --product-brand: #0f172a;
+  --product-error: #dc2626;
+}
+
+@theme inline {
+  --color-default: var(--product-bg);
+  --color-subtle: var(--product-bg-subtle);
+  --color-emphasis: var(--product-bg-emphasis);
+  --color-cal-muted: var(--product-bg-muted);
+  --color-muted: var(--product-border-muted);
+  --text-color-default: var(--product-text-default);
+  --text-color-subtle: var(--product-text-subtle);
+  --text-color-emphasis: var(--product-text-emphasis);
+  --border-color-default: var(--product-border);
+  --border-color-subtle: var(--product-border-subtle);
+  --border-color-muted: var(--product-border-muted);
+}
+
+[data-prototype-screenshot] .bg-default {
+  background-color: var(--product-bg);
+}
+[data-prototype-screenshot] .bg-subtle {
+  background-color: var(--product-bg-subtle);
+}
+[data-prototype-screenshot] .bg-emphasis {
+  background-color: var(--product-bg-emphasis);
+}
+[data-prototype-screenshot] .bg-cal-muted {
+  background-color: var(--product-bg-muted);
+}
+[data-prototype-screenshot] .bg-cal-muted\/hover:hover {
+  background-color: var(--product-bg-muted);
+}
+[data-prototype-screenshot] .hover\:bg-cal-muted:hover {
+  background-color: var(--product-bg-muted);
+}
+[data-prototype-screenshot] .hover\:bg-subtle:hover {
+  background-color: var(--product-bg-subtle);
+}
+[data-prototype-screenshot] .text-default {
+  color: var(--product-text-default);
+}
+[data-prototype-screenshot] .text-subtle {
+  color: var(--product-text-subtle);
+}
+[data-prototype-screenshot] .text-emphasis {
+  color: var(--product-text-emphasis);
+}
+[data-prototype-screenshot] .text-muted {
+  color: var(--product-text-subtle);
+}
+[data-prototype-screenshot] .text-error {
+  color: var(--product-error);
+}
+[data-prototype-screenshot] .border-default,
+[data-prototype-screenshot] .border-subtle,
+[data-prototype-screenshot] .border-muted {
+  border-color: var(--product-border);
+}
+[data-prototype-screenshot] .font-cal {
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-weight: 600;
+}
+[data-prototype-screenshot] .shadow-outline-gray-rested {
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+}
+[data-prototype-screenshot] .shadow-outline-gray-focused,
+[data-prototype-screenshot] .focus-within\:shadow-outline-gray-focused:focus-within {
+  box-shadow: 0 0 0 2px rgb(15 23 42 / 0.12);
+}
+[data-prototype-screenshot] .focus-within\:border-emphasis:focus-within {
+  border-color: var(--product-text-emphasis);
+}
