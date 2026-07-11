@@ -16,6 +16,7 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"],
+      "@coss/ui/*": ["./packages/coss-ui/src/*"],
       "@prototype/*": ["./node_modules/proto-plugin/src/*"]
     }
   },

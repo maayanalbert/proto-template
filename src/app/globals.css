@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @source "../../node_modules/proto-plugin/src/**/*.{js,ts,jsx,tsx}";
 @source "../prototypes/**/*.{js,ts,jsx,tsx}";
+@source "../../packages/coss-ui/src/**/*.{js,ts,jsx,tsx}";
+
+@import "../../packages/coss-ui/src/styles/globals.css";
 
 @import "./product-tokens.css";
 
