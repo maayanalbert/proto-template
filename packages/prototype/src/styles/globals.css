@@ -1,0 +1,972 @@
+/**
+ * Prototype package chrome theme (dark)
+ * Typography: DM Sans for review shell and gallery chrome.
+ *
+ * Scoped to [data-prototype-root]. Prototype preview restores host design tokens.
+ */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&display=swap");
+
+[data-prototype-root] {
+  /* Tool chrome typography */
+  --tool-font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --tool-font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --tool-font: var(--tool-font-body);
+  --tool-line-height: 1.6;
+
+  --font-sans: var(--tool-font-body);
+  --font-display: var(--tool-font-display);
+  --font-mono: var(--tool-font-body);
+
+  /* Tool chrome accent colors */
+  --tool-chrome-pink: rgb(255, 70, 100);
+  --tool-chrome-yellow: #ebc737;
+  --tool-chrome-yellow-text: #d9ae00;
+  --tool-chrome-blue: rgb(0, 151, 254);
+  --tool-chrome-pink-deep: rgb(215, 55, 85);
+  --tool-chrome-yellow-deep: rgb(175, 130, 0);
+  --tool-chrome-blue-deep: rgb(0, 120, 215);
+
+  /* Tool chrome link highlight fills */
+  --tool-chrome-pink-highlight: rgba(255, 70, 100, 0.13);
+  --tool-chrome-yellow-highlight: rgba(217, 174, 0, 0.15);
+  --tool-chrome-blue-highlight: rgba(0, 151, 254, 0.13);
+  --tool-chrome-gray-highlight: rgba(255, 255, 255, 0.08);
+  --tool-chrome-button-bg: rgba(255, 255, 255, 0.14);
+  --tool-chrome-button-text: rgba(255, 255, 255, 0.92);
+  --tool-chrome-button-bg-hover: rgba(255, 255, 255, 0.22);
+  --tool-chrome-button-text-hover: #ffffff;
+
+  /* Tool chrome surfaces — deep dark palette.
+     Chrome (ground) is darkest for sidebar + header; content (bg) is a lighter
+     elevated panel for the gallery grid and review preview frame.
+
+     Neutral scale (measured against the #151515 content surface):
+       heading  #f0f0f0  ~13:1   crisp titles
+       text     #d0d0d0  ~9:1    body copy
+       muted    #a0a0a0  ~5:1    labels, descriptions (AA)
+       icon     #9a9a9a          glyphs, dimmer than body
+       border   #333333          hairline dividers
+       strong   #454545          inputs, structural edges */
+  --tool-chrome-ground: #121212;
+  --tool-chrome-bg: #151515;
+  --tool-chrome-surface: #1c1c1c;
+  --tool-chrome-surface-muted: #181818;
+  --tool-chrome-text: #d0d0d0;
+  --tool-chrome-text-heading: #f0f0f0;
+  --tool-chrome-text-muted: #9c9c9c;
+  --tool-chrome-icon: #9a9a9a;
+  --tool-chrome-icon-hover: #d4d4d4;
+  --tool-chrome-border: #333333;
+  --tool-chrome-border-strong: #454545;
+  --tool-dialog-separator: #404040;
+  --prototype-state-canvas-edge: var(--tool-chrome-icon-hover);
+
+  --prototype-ground: var(--tool-chrome-ground);
+  --prototype-review-header-height: 3.25rem;
+  --tool-review-card-radius: 6px;
+  --tool-review-card-shadow:
+    0 1px 2px rgb(0 0 0 / 0.18), 0 0 0 1px var(--tool-chrome-border);
+  --tool-review-card-shadow-hover:
+    0 1px 3px rgb(0 0 0 / 0.22), 0 0 0 1px var(--tool-chrome-border-strong);
+  --radius: 0.625rem;
+
+  font-family: var(--tool-font-body);
+  font-size: 15px;
+  line-height: var(--tool-line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Semantic bridge */
+  --bg-ground: var(--tool-chrome-ground);
+  --bg-main: var(--tool-chrome-bg);
+  --bg-top: var(--tool-chrome-surface);
+  --bg-subtle: var(--tool-chrome-surface-muted);
+  --bg-layered: #1c1c1c;
+  --bg-invert: var(--tool-chrome-text-heading);
+  --bg-white: var(--tool-chrome-bg);
+
+  --text-primary: var(--tool-chrome-text);
+  --text-secondary: var(--tool-chrome-text-muted);
+  --text-tertiary: #8a8a8a;
+  --text-invert: #0d0d0d;
+
+  --border-faint: var(--tool-chrome-border);
+  --border-solid: var(--tool-chrome-border);
+  --border-medium: var(--tool-chrome-border-strong);
+
+  --primary: var(--tool-chrome-blue);
+  --primary-foreground: #ffffff;
+  --primary-dark: var(--tool-chrome-blue-deep);
+  --error: var(--tool-chrome-pink);
+  --success: #22c55e;
+  --focus-ring: var(--tool-chrome-text-heading);
+  --active: var(--tool-chrome-text-heading);
+  --input-border: var(--tool-chrome-border-strong);
+
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.16);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px 0 rgb(0 0 0 / 0.24);
+  --shadow-lg: 0 8px 24px 0 rgb(0 0 0 / 0.28);
+
+  /*
+   * Host coss-ui @theme inline resolves utilities via shadcn tokens (--background,
+   * --foreground, …). Bridge them to tool chrome here; source previews reset
+   * these inside [data-prototype-screenshot] / [data-prototype-source-surface].
+   */
+  --background: var(--tool-chrome-bg);
+  --foreground: var(--tool-chrome-text-heading);
+  --card: var(--tool-chrome-surface);
+  --card-foreground: var(--tool-chrome-text-heading);
+  --popover: var(--tool-chrome-surface);
+  --popover-foreground: var(--tool-chrome-text-heading);
+  --secondary: var(--tool-chrome-surface-muted);
+  --secondary-foreground: var(--tool-chrome-text-heading);
+  --muted: var(--tool-chrome-surface-muted);
+  --muted-foreground: var(--tool-chrome-text-muted);
+  --accent: var(--tool-chrome-gray-highlight);
+  --accent-foreground: var(--tool-chrome-text-heading);
+  --destructive: var(--tool-chrome-pink);
+  --destructive-foreground: #ffffff;
+  --border: var(--tool-chrome-border);
+  --input: var(--tool-chrome-border-strong);
+  --ring: var(--tool-chrome-text-heading);
+
+  /* Tailwind @theme inline */
+  --color-background: var(--tool-chrome-bg);
+  --color-foreground: var(--tool-chrome-text);
+  --color-card: var(--tool-chrome-surface);
+  --color-card-foreground: var(--tool-chrome-text);
+  --color-popover: var(--tool-chrome-surface);
+  --color-popover-foreground: var(--tool-chrome-text);
+  --color-primary: var(--tool-chrome-blue);
+  --color-primary-foreground: #ffffff;
+  --color-primary-dark: var(--tool-chrome-blue-deep);
+  --color-secondary: var(--tool-chrome-surface-muted);
+  --color-secondary-foreground: var(--tool-chrome-text);
+  --color-muted: var(--tool-chrome-surface-muted);
+  --color-muted-foreground: var(--tool-chrome-text-muted);
+  --color-accent: var(--tool-chrome-gray-highlight);
+  --color-accent-foreground: var(--tool-chrome-text);
+  --color-destructive: var(--tool-chrome-pink);
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--tool-chrome-border);
+  --color-border-faint: var(--tool-chrome-border);
+  --color-border-solid: var(--tool-chrome-border);
+  --color-border-medium: var(--tool-chrome-border-strong);
+  --color-input: var(--tool-chrome-border-strong);
+  --color-ring: var(--tool-chrome-text-heading);
+  --color-focus-ring: var(--tool-chrome-text-heading);
+  --color-active: var(--tool-chrome-text-heading);
+  --color-error: var(--tool-chrome-pink);
+  --color-success: #22c55e;
+  --color-bg-ground: var(--tool-chrome-ground);
+  --color-bg-main: var(--tool-chrome-bg);
+  --color-bg-top: var(--tool-chrome-surface);
+  --color-bg-subtle: var(--tool-chrome-surface-muted);
+  --color-bg-layered: #1c1c1c;
+  --color-bg-invert: var(--tool-chrome-text-heading);
+  --color-bg-white: var(--tool-chrome-bg);
+  --color-text-primary: var(--tool-chrome-text);
+  --color-text-secondary: var(--tool-chrome-text-muted);
+  --color-text-tertiary: #8a8a8a;
+  --color-text-invert: #121212;
+
+  color: var(--tool-chrome-text);
+  background-color: var(--tool-chrome-bg);
+}
+
+[data-prototype-root] * {
+  font-family: inherit;
+}
+
+/*
+ * Sidebar chrome — a content-dense reading surface, so it pins every semantic
+ * "content" token to the bright end of the neutral scale (headings crisp, body
+ * legible, muted labels still ~5:1). Borders step up one notch from the base so
+ * dividers and input edges read clearly against the elevated ground, without
+ * turning into harsh wireframe lines.
+ */
+[data-prototype-review-sidebar],
+[data-comments-sidebar],
+[data-platform-sidebar] {
+  font-family: var(--tool-font-body);
+  --font-sans: var(--tool-font-body);
+  --font-display: var(--tool-font-display);
+  --font-mono: var(--tool-font-body);
+
+  --tool-chrome-icon: #b0b0b0;
+  --tool-chrome-icon-hover: #e6e6e6;
+  --tool-chrome-gray-highlight: rgba(255, 255, 255, 0.09);
+  --tool-chrome-border: #3a3a3a;
+  --tool-chrome-border-strong: #4d4d4d;
+  --tool-chrome-input-surface: rgba(255, 255, 255, 0.035);
+
+  color: var(--tool-chrome-text);
+
+  --bg-ground: var(--tool-chrome-ground);
+  --bg-main: var(--tool-chrome-bg);
+  --bg-top: var(--tool-chrome-bg);
+  --bg-subtle: var(--tool-chrome-surface-muted);
+  --bg-layered: #1a1a1a;
+  --border-faint: var(--tool-chrome-border);
+  --border-solid: var(--tool-chrome-border);
+  --border-medium: var(--tool-chrome-border-strong);
+
+  --text-primary: var(--tool-chrome-text-heading);
+  --text-secondary: var(--tool-chrome-text);
+  --text-tertiary: var(--tool-chrome-text-muted);
+
+  --foreground: var(--tool-chrome-text-heading);
+  --muted-foreground: var(--tool-chrome-text-muted);
+  --border: var(--tool-chrome-border);
+  --input: var(--tool-chrome-border-strong);
+
+  --color-background: var(--tool-chrome-bg);
+  --color-foreground: var(--tool-chrome-text-heading);
+  --color-card: var(--tool-chrome-surface);
+  --color-card-foreground: var(--tool-chrome-text-heading);
+  --color-muted: var(--tool-chrome-surface-muted);
+  --color-muted-foreground: var(--tool-chrome-text-muted);
+  --color-accent: var(--tool-chrome-gray-highlight);
+  --color-accent-foreground: var(--tool-chrome-text-heading);
+  --color-border: var(--tool-chrome-border);
+  --color-border-faint: var(--tool-chrome-border);
+  --color-border-solid: var(--tool-chrome-border);
+  --color-border-medium: var(--tool-chrome-border-strong);
+  --color-input: var(--tool-chrome-border-strong);
+  --color-ring: var(--tool-chrome-text-heading);
+  --color-bg-ground: var(--tool-chrome-ground);
+  --color-bg-main: var(--tool-chrome-bg);
+  --color-bg-top: var(--tool-chrome-bg);
+  --color-bg-subtle: var(--tool-chrome-surface-muted);
+  --color-bg-layered: #1a1a1a;
+  --color-text-primary: var(--tool-chrome-text-heading);
+  --color-text-secondary: var(--tool-chrome-text);
+  --color-text-tertiary: var(--tool-chrome-text-muted);
+}
+
+/* Give brief/prompt inputs a faint filled surface so the field reads as an
+   affordance rather than an empty hairline rectangle. */
+[data-prototype-review-sidebar] textarea:not([data-prototype-screenshot] *),
+[data-comments-sidebar] textarea:not([data-prototype-screenshot] *),
+[data-platform-sidebar] textarea:not([data-prototype-screenshot] *) {
+  background-color: var(--tool-chrome-input-surface);
+}
+
+[data-prototype-review-sidebar]
+  :is(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    a[href],
+    summary,
+    label:has([role="switch"]),
+    label:has(input[type="checkbox"])
+  ),
+[data-comments-sidebar]
+  :is(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    a[href],
+    summary,
+    label:has([role="switch"]),
+    label:has(input[type="checkbox"])
+  ),
+[data-platform-sidebar]
+  :is(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    a[href],
+    summary,
+    label:has([role="switch"]),
+    label:has(input[type="checkbox"])
+  ),
+#prototype-comments-sidebar-root
+  :is(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    a[href],
+    summary,
+    label:has([role="switch"]),
+    label:has(input[type="checkbox"])
+  ) {
+  cursor: pointer;
+}
+
+[data-prototype-root] ::selection {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--tool-chrome-text-heading);
+}
+
+[data-prototype-root][data-prototype-comment-theme="light"] {
+  --tool-chrome-gray-highlight: rgba(0, 0, 0, 0.05);
+  --tool-chrome-button-bg: rgba(0, 0, 0, 0.06);
+  --tool-chrome-button-text: rgba(0, 0, 0, 0.72);
+  --tool-chrome-button-bg-hover: rgba(0, 0, 0, 0.1);
+  --tool-chrome-button-text-hover: rgba(0, 0, 0, 0.92);
+  --tool-chrome-ground: #f5f5f5;
+  --tool-chrome-bg: #ffffff;
+  --tool-chrome-surface: #ffffff;
+  --tool-chrome-surface-muted: #fafafa;
+  --tool-chrome-text: rgba(0, 0, 0, 0.85);
+  --tool-chrome-text-heading: rgba(0, 0, 0, 0.92);
+  --tool-chrome-text-muted: rgba(0, 0, 0, 0.55);
+  --tool-chrome-icon: rgba(0, 0, 0, 0.45);
+  --tool-chrome-icon-hover: rgba(0, 0, 0, 0.85);
+  --tool-chrome-border: rgba(0, 0, 0, 0.1);
+  --tool-chrome-border-strong: rgba(0, 0, 0, 0.16);
+  --tool-dialog-separator: rgba(0, 0, 0, 0.12);
+  --prototype-state-canvas-edge: rgba(0, 0, 0, 0.22);
+
+  --bg-ground: var(--tool-chrome-ground);
+  --bg-main: var(--tool-chrome-bg);
+  --bg-top: var(--tool-chrome-surface);
+  --bg-subtle: var(--tool-chrome-surface-muted);
+  --bg-layered: #f0f0f0;
+  --bg-invert: rgba(0, 0, 0, 0.92);
+  --bg-white: #ffffff;
+
+  --text-primary: var(--tool-chrome-text-heading);
+  --text-secondary: var(--tool-chrome-text-muted);
+  --text-tertiary: rgba(0, 0, 0, 0.45);
+  --text-invert: #ffffff;
+
+  --border-faint: rgba(0, 0, 0, 0.06);
+  --border-solid: rgba(0, 0, 0, 0.1);
+  --border-medium: rgba(0, 0, 0, 0.16);
+
+  --tool-review-card-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  --tool-review-card-shadow-hover: 0 2px 4px rgb(0 0 0 / 0.06);
+
+  --background: var(--tool-chrome-bg);
+  --foreground: var(--tool-chrome-text-heading);
+  --card: var(--tool-chrome-surface);
+  --card-foreground: var(--tool-chrome-text-heading);
+  --popover: var(--tool-chrome-surface);
+  --popover-foreground: var(--tool-chrome-text-heading);
+  --secondary: var(--tool-chrome-surface-muted);
+  --secondary-foreground: var(--tool-chrome-text-heading);
+  --muted: var(--tool-chrome-surface-muted);
+  --muted-foreground: var(--tool-chrome-text-muted);
+  --accent: var(--tool-chrome-gray-highlight);
+  --accent-foreground: var(--tool-chrome-text-heading);
+  --destructive: var(--tool-chrome-pink);
+  --destructive-foreground: #ffffff;
+  --border: var(--tool-chrome-border);
+  --input: var(--tool-chrome-border-strong);
+  --ring: var(--tool-chrome-text-heading);
+
+  --color-background: var(--tool-chrome-bg);
+  --color-foreground: var(--tool-chrome-text-heading);
+  --color-card: var(--tool-chrome-surface);
+  --color-card-foreground: var(--tool-chrome-text-heading);
+  --color-popover: var(--tool-chrome-surface);
+  --color-popover-foreground: var(--tool-chrome-text-heading);
+  --color-secondary: var(--tool-chrome-surface-muted);
+  --color-secondary-foreground: var(--tool-chrome-text-heading);
+  --color-muted: var(--tool-chrome-surface-muted);
+  --color-muted-foreground: var(--tool-chrome-text-muted);
+  --color-accent: var(--tool-chrome-gray-highlight);
+  --color-accent-foreground: var(--tool-chrome-text-heading);
+  --color-border: var(--tool-chrome-border);
+  --color-border-faint: var(--border-faint);
+  --color-border-solid: var(--border-solid);
+  --color-border-medium: var(--border-medium);
+  --color-ring: var(--tool-chrome-text-heading);
+  --color-bg-ground: var(--tool-chrome-ground);
+  --color-bg-main: var(--tool-chrome-bg);
+  --color-bg-top: var(--tool-chrome-surface);
+  --color-bg-subtle: var(--tool-chrome-surface-muted);
+  --color-bg-layered: #f0f0f0;
+  --color-text-primary: var(--tool-chrome-text-heading);
+  --color-text-secondary: var(--tool-chrome-text-muted);
+  --color-text-tertiary: rgba(0, 0, 0, 0.45);
+
+  color: var(--tool-chrome-text);
+  background-color: var(--tool-chrome-bg);
+}
+
+[data-prototype-root][data-prototype-comment-theme="light"] ::selection {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.92);
+}
+
+[data-prototype-root][data-prototype-comment-theme="light"]
+  [data-prototype-review-sidebar] {
+  --tool-chrome-icon: rgba(0, 0, 0, 0.45);
+  --tool-chrome-icon-hover: rgba(0, 0, 0, 0.85);
+  --tool-chrome-text: var(--tool-chrome-icon-hover);
+  --tool-chrome-text-heading: var(--tool-chrome-icon-hover);
+  --tool-chrome-text-muted: rgba(0, 0, 0, 0.55);
+  --bg-layered: #f0f0f0;
+  --border-faint: rgba(0, 0, 0, 0.08);
+  --border-solid: rgba(0, 0, 0, 0.12);
+  --border-medium: rgba(0, 0, 0, 0.18);
+  --text-tertiary: rgba(0, 0, 0, 0.45);
+  --color-border: rgba(0, 0, 0, 0.12);
+  --color-border-faint: rgba(0, 0, 0, 0.08);
+  --color-border-solid: rgba(0, 0, 0, 0.12);
+  --color-border-medium: rgba(0, 0, 0, 0.18);
+  --color-muted-foreground: rgba(0, 0, 0, 0.55);
+  --color-text-tertiary: rgba(0, 0, 0, 0.45);
+}
+
+html.prototype-theme-transition-disable :is(*, *::before, *::after) {
+  transition: none !important;
+}
+
+/* ── Tool chrome utilities (not prototype preview) ── */
+
+[data-prototype-root] .tool-heading,
+[data-prototype-root] .font-display,
+[data-prototype-root] .tool-chip {
+  font-family: var(--tool-font-display);
+}
+
+[data-prototype-root] .tool-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--tool-chrome-text-heading);
+}
+
+[data-prototype-root] .tool-body {
+  font-family: var(--tool-font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--tool-chrome-text-muted);
+}
+
+[data-prototype-root] .tool-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+[data-prototype-root] .tool-chip-blue {
+  background: var(--tool-chrome-gray-highlight);
+  color: var(--tool-chrome-text-muted);
+}
+
+[data-prototype-root] .tool-chip-pink {
+  background: var(--tool-chrome-pink-highlight);
+  color: var(--tool-chrome-pink-deep);
+}
+
+[data-prototype-root] .tool-chip-yellow {
+  background: var(--tool-chrome-yellow-highlight);
+  color: var(--tool-chrome-yellow-deep);
+}
+
+[data-prototype-root] .tool-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--tool-chrome-border);
+  background: var(--tool-chrome-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-prototype-root] .tool-toolbar-button {
+  display: inline-flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(var(--radius) - 2px);
+  border: none;
+  background: transparent;
+  color: var(--tool-chrome-text-muted);
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-prototype-root] .tool-toolbar-button:hover {
+    background: var(--tool-chrome-surface);
+    color: var(--tool-chrome-icon-hover);
+  }
+}
+
+[data-prototype-root] .tool-panel-section-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+[data-prototype-root] .tool-panel-section-content.is-expanded {
+  grid-template-rows: 1fr;
+}
+
+[data-prototype-root] .tool-panel-section-chevron {
+  transition: transform 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+[data-prototype-root] .tool-panel-section-chevron.is-expanded {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-prototype-root] .tool-panel-section-content,
+  [data-prototype-root] .tool-panel-section-chevron {
+    transition: none;
+  }
+
+  [data-prototype-root] .tool-review-card,
+  [data-prototype-root] .tool-variant-card {
+    transition: none;
+  }
+}
+
+[data-prototype-root] .tool-review-card {
+  box-shadow: var(--tool-review-card-shadow);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-prototype-root] .tool-review-card:hover {
+    box-shadow: var(--tool-review-card-shadow-hover);
+  }
+}
+
+[data-prototype-root] .tool-variant-card {
+  width: 100%;
+  aspect-ratio: 1.618 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--tool-review-card-radius);
+  border: 1px solid var(--border-solid);
+  background: var(--bg-main);
+  text-align: left;
+  box-shadow: var(--tool-review-card-shadow);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-prototype-root] .tool-variant-card:hover:not(.is-active) {
+    border-color: var(--border-medium);
+    box-shadow: var(--tool-review-card-shadow-hover);
+  }
+}
+
+[data-prototype-root] .tool-variant-card.is-active {
+  border: 2px solid var(--tool-chrome-blue);
+  box-shadow: none;
+}
+
+[data-prototype-root] .tool-variant-default-badge {
+  color: var(--tool-chrome-blue);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[data-prototype-root] .tool-variant-original-badge {
+  color: var(--tool-chrome-text-muted);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[data-prototype-root] .tool-variant-card [data-prototype-screenshot] {
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty-state shells offset for the page header row — reset inside scaled previews. */
+[data-prototype-root]
+  .tool-variant-card
+  [data-prototype-screenshot]
+  .empty-state-shell {
+  transform: none !important;
+}
+
+[data-prototype-root] .tool-variant-card [data-prototype-screenshot] :focus,
+[data-prototype-root]
+  .tool-variant-card
+  [data-prototype-screenshot]
+  :focus-visible {
+  outline: none;
+}
+
+[data-prototype-root] .tool-dialog-surface {
+  overflow: hidden;
+  border-radius: calc(var(--radius) + 4px);
+  border: 1px solid var(--tool-chrome-border);
+  background: var(--tool-chrome-bg);
+  color: var(--tool-chrome-text);
+  color-scheme: dark;
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px #2a2a2a;
+
+  /*
+   * Product preview surfaces reset shadcn tokens to light values. Re-bridge the
+   * full tool chrome token set so modal chrome matches the gallery/home screen.
+   */
+  --bg-main: var(--tool-chrome-bg);
+  --bg-top: var(--tool-chrome-surface);
+  --bg-subtle: var(--tool-chrome-surface-muted);
+  --text-primary: var(--tool-chrome-text);
+  --text-secondary: var(--tool-chrome-text-muted);
+  --border-faint: var(--tool-chrome-border);
+  --border-solid: var(--tool-chrome-border);
+  --border-medium: var(--tool-chrome-border-strong);
+  --primary: var(--tool-chrome-blue);
+  --primary-foreground: #ffffff;
+  --primary-dark: var(--tool-chrome-blue-deep);
+  --focus-ring: var(--tool-chrome-text-heading);
+  --active: var(--tool-chrome-text-heading);
+  --input-border: var(--tool-chrome-border-strong);
+
+  --background: var(--tool-chrome-bg);
+  --foreground: var(--tool-chrome-text-heading);
+  --card: var(--tool-chrome-surface);
+  --card-foreground: var(--tool-chrome-text-heading);
+  --popover: var(--tool-chrome-surface);
+  --popover-foreground: var(--tool-chrome-text-heading);
+  --secondary: var(--tool-chrome-surface-muted);
+  --secondary-foreground: var(--tool-chrome-text-heading);
+  --muted: var(--tool-chrome-surface-muted);
+  --muted-foreground: var(--tool-chrome-text-muted);
+  --accent: var(--tool-chrome-gray-highlight);
+  --accent-foreground: var(--tool-chrome-text-heading);
+  --destructive: var(--tool-chrome-pink);
+  --destructive-foreground: #ffffff;
+  --border: var(--tool-chrome-border);
+  --input: var(--tool-chrome-border-strong);
+  --ring: var(--tool-chrome-text-heading);
+
+  --color-background: var(--tool-chrome-bg);
+  --color-foreground: var(--tool-chrome-text-heading);
+  --color-card: var(--tool-chrome-surface);
+  --color-card-foreground: var(--tool-chrome-text-heading);
+  --color-popover: var(--tool-chrome-surface);
+  --color-popover-foreground: var(--tool-chrome-text-heading);
+  --color-primary: var(--tool-chrome-blue);
+  --color-primary-foreground: #ffffff;
+  --color-primary-dark: var(--tool-chrome-blue-deep);
+  --color-secondary: var(--tool-chrome-surface-muted);
+  --color-secondary-foreground: var(--tool-chrome-text-heading);
+  --color-muted: var(--tool-chrome-surface-muted);
+  --color-muted-foreground: var(--tool-chrome-text-muted);
+  --color-accent: var(--tool-chrome-gray-highlight);
+  --color-accent-foreground: var(--tool-chrome-text-heading);
+  --color-destructive: var(--tool-chrome-pink);
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--tool-chrome-border);
+  --color-border-faint: var(--tool-chrome-border);
+  --color-border-solid: var(--tool-chrome-border);
+  --color-border-medium: var(--tool-chrome-border-strong);
+  --color-input: var(--tool-chrome-border-strong);
+  --color-ring: var(--tool-chrome-text-heading);
+  --color-focus-ring: var(--tool-chrome-text-heading);
+  --color-active: var(--tool-chrome-text-heading);
+  --color-bg-main: var(--tool-chrome-bg);
+  --color-bg-top: var(--tool-chrome-surface);
+  --color-bg-subtle: var(--tool-chrome-surface-muted);
+  --color-text-primary: var(--tool-chrome-text);
+  --color-text-secondary: var(--tool-chrome-text-muted);
+}
+
+[data-prototype-root][data-prototype-comment-theme="light"]
+  .tool-dialog-surface {
+  color-scheme: light;
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+[data-prototype-root] .tool-dialog-separator {
+  background: var(--tool-dialog-separator);
+}
+
+/* Tool chrome tabs — scoped away from product preview surfaces. */
+[data-prototype-root] [role="tablist"] {
+  border: 1px solid var(--tool-chrome-border);
+  background: var(--tool-chrome-surface-muted);
+}
+
+[data-prototype-root] [role="tab"][data-state="active"] {
+  color: var(--tool-chrome-text-heading);
+  background: color-mix(
+    in srgb,
+    var(--tool-chrome-blue) 12%,
+    var(--tool-chrome-surface-muted)
+  );
+  box-shadow:
+    var(--shadow-xs),
+    inset 0 0 0 1px color-mix(in srgb, var(--tool-chrome-blue) 35%, transparent);
+  font-weight: 600;
+}
+
+[data-prototype-root] :is([data-prototype-source-surface], [data-prototype-screenshot]) [role="tablist"],
+:is([data-prototype-source-surface], [data-prototype-screenshot]) [role="tablist"] {
+  border: unset;
+  background: unset;
+}
+
+[data-prototype-root] :is([data-prototype-source-surface], [data-prototype-screenshot]) [role="tab"][data-state="active"],
+:is([data-prototype-source-surface], [data-prototype-screenshot]) [role="tab"][data-state="active"] {
+  color: unset;
+  background: unset;
+  box-shadow: unset;
+  font-weight: unset;
+}
+
+/* Section labels — compact nav chip scale */
+[data-prototype-root] .tool-section-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tool-chrome-text-muted);
+}
+
+/* State map chrome — dedicated canvas bed + node footer tokens per theme. */
+[data-prototype-root] [data-prototype-state-canvas] {
+  --prototype-state-map-canvas-bg: var(--tool-chrome-ground);
+  --prototype-state-map-node-surface: var(--tool-chrome-surface);
+  --prototype-state-map-node-preview-bg: var(--tool-chrome-surface-muted);
+  --prototype-state-map-node-footer-bg: var(--tool-chrome-surface-muted);
+  --prototype-state-map-node-footer-border: var(--tool-chrome-border-strong);
+  --prototype-state-map-node-footer-text: var(--tool-chrome-text-heading);
+
+  color: var(--tool-chrome-text);
+}
+
+/* Full-page / overlay maps get a canvas bed; floating mini map stays transparent. */
+[data-prototype-root]
+  [data-prototype-state-canvas]:not(
+    [data-prototype-state-canvas-layout="mini"]
+  ) {
+  background-color: var(--prototype-state-map-canvas-bg);
+}
+
+/* Mini map: compact dark nodes over the live preview; edges stay a step lighter. */
+[data-prototype-root]
+  [data-prototype-state-canvas][data-prototype-state-canvas-layout="mini"] {
+  --prototype-state-map-node-surface: #171717;
+  --prototype-state-map-node-preview-bg: #171717;
+  --prototype-state-map-node-footer-text: rgba(255, 255, 255, 0.92);
+  --prototype-mini-edge-color: #5a5a5a;
+}
+
+[data-prototype-root][data-prototype-comment-theme="dark"]
+  [data-prototype-state-canvas] {
+  --prototype-state-map-canvas-bg: var(--tool-chrome-ground);
+  --prototype-state-map-node-surface: var(--tool-chrome-surface);
+  --prototype-state-map-node-preview-bg: var(--tool-chrome-surface-muted);
+  --prototype-state-map-node-footer-bg: var(--tool-chrome-surface-muted);
+  --prototype-state-map-node-footer-border: var(--tool-chrome-border-strong);
+  --prototype-state-map-node-footer-text: var(--tool-chrome-text-heading);
+}
+
+/* Restore host prototype preview theme inside screenshot capture and source
+   surfaces (component library). Fixed product values — must not inherit tool
+   theme from [data-prototype-root]. Host apps extend with --product-* tokens. */
+[data-prototype-root] [data-prototype-screenshot],
+[data-prototype-screenshot],
+[data-prototype-root] [data-prototype-source-surface],
+[data-prototype-source-surface] {
+  color-scheme: light;
+
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+
+  --bg-bedrock: var(--color-gray-100);
+  --bg-main: #ffffff;
+  --bg-top: #ffffff;
+  --bg-subtle: var(--color-gray-50);
+  --bg-layered: color-mix(in srgb, var(--color-gray-900) 6%, transparent);
+  --bg-invert: var(--color-gray-900);
+  --bg-white: #ffffff;
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-500);
+  --text-tertiary: var(--color-gray-400);
+  --border-faint: color-mix(in srgb, var(--color-gray-900) 7%, transparent);
+  --border-solid: var(--color-gray-200);
+  --border-medium: var(--color-gray-300);
+  --primary: var(--color-gray-900);
+  --primary-foreground: #ffffff;
+  --primary-dark: var(--color-gray-800);
+  --error: var(--color-red-600);
+  --success: var(--color-green-600);
+  --focus-ring: var(--text-primary);
+  --active: var(--color-gray-900);
+  --radius: 4px;
+
+  /* shadcn base tokens — host [data-prototype-screenshot] rules override with --product-* */
+  --background: var(--bg-main);
+  --foreground: var(--text-primary);
+  --card: var(--bg-top);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-top);
+  --popover-foreground: var(--text-primary);
+  --secondary: var(--bg-subtle);
+  --secondary-foreground: var(--text-primary);
+  --muted: color-mix(in srgb, var(--color-gray-900) 6%, transparent);
+  --muted-foreground: var(--text-secondary);
+  --accent: color-mix(in srgb, var(--color-gray-900) 6%, transparent);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--error);
+  --destructive-foreground: #ffffff;
+  --border: var(--border-solid);
+  --input: var(--border-medium);
+  --ring: var(--border-faint);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-faint: var(--border-faint);
+  --color-border-solid: var(--border-solid);
+  --color-border-medium: var(--border-medium);
+  --color-border-hover: var(--border-medium);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-focus-ring: var(--focus-ring);
+  --color-active: var(--active);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-bg-bedrock: var(--bg-bedrock);
+  --color-bg-main: var(--bg-main);
+  --color-bg-top: var(--bg-top);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-layered: var(--bg-layered);
+  --color-bg-invert: var(--bg-invert);
+  --color-bg-white: var(--bg-white);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+
+  font-family: var(--font-sans);
+  font-size: initial;
+}
+
+[data-prototype-root] [data-prototype-screenshot],
+[data-prototype-screenshot] {
+  color: var(--text-primary);
+  background-color: var(--bg-main);
+}
+
+/* Source surfaces (component-library preview cards) pin light product tokens but
+   do NOT force a background — each card supplies its own via bg utilities
+   (bg-default → white, bg-brand, etc.) so they read as light components on the
+   dark page. */
+[data-prototype-root] [data-prototype-source-surface],
+[data-prototype-source-surface] {
+  color: var(--text-primary);
+}
+
+[data-prototype-root] [data-prototype-screenshot] ::selection,
+[data-prototype-screenshot] ::selection,
+[data-prototype-root] [data-prototype-source-surface] ::selection,
+[data-prototype-source-surface] ::selection {
+  background: #b4d5fe;
+  color: var(--text-primary);
+}
+
+[data-prototype-root] [data-prototype-screenshot] *,
+[data-prototype-screenshot] *,
+[data-prototype-root] [data-prototype-source-surface] *,
+[data-prototype-source-surface] * {
+  font-family: inherit;
+}
+
+/* Light schematic previews (state map + PR split wireframes). */
+[data-prototype-wireframe-preview] {
+  --prototype-wireframe-block: #e4e6ea;
+  --prototype-wireframe-block-subtle: #eceef1;
+  --bg-bedrock: var(--color-gray-100);
+  --bg-main: #ffffff;
+  --bg-top: #ffffff;
+  --bg-subtle: var(--color-gray-50);
+  --bg-layered: color-mix(in srgb, var(--color-gray-900) 6%, transparent);
+  --bg-invert: var(--color-gray-900);
+  --bg-white: #ffffff;
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-500);
+  --text-tertiary: var(--color-gray-400);
+  --border-faint: color-mix(in srgb, var(--color-gray-900) 7%, transparent);
+  --border-solid: var(--color-gray-200);
+  --border-medium: var(--color-gray-300);
+  --border-subtle: var(--color-gray-200);
+  --muted: var(--prototype-wireframe-block-subtle);
+  --color-muted: var(--prototype-wireframe-block);
+  --color-muted-foreground: var(--color-gray-400);
+  --cal-bg: #ffffff;
+  --cal-bg-emphasis: var(--prototype-wireframe-block);
+  --color-background: #ffffff;
+  --color-foreground: var(--color-gray-900);
+  --color-border: var(--border-solid);
+  --color-border-faint: var(--border-faint);
+  --color-border-solid: var(--border-solid);
+  --color-border-medium: var(--border-medium);
+  --color-bg-bedrock: var(--bg-bedrock);
+  --color-bg-main: var(--bg-main);
+  --color-bg-top: var(--bg-top);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-layered: var(--bg-layered);
+  --color-bg-invert: var(--bg-invert);
+  --color-bg-white: #ffffff;
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+
+  color: var(--text-primary);
+  background-color: var(--bg-subtle);
+}
+
+[data-prototype-wireframe-preview] > * {
+  background-color: var(--bg-subtle, #f4f4f5);
+}

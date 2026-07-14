@@ -1,0 +1,63 @@
+$wireframe-subtle: var(--prototype-state-map-node-preview-bg, var(--tool-chrome-surface-muted));
+$wireframe-footer-border: var(--prototype-state-map-node-footer-border, var(--tool-chrome-border-strong));
+$wireframe-bg: var(--tool-chrome-surface);
+$enter-duration: 0.12s;
+$enter-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+.panel {
+  width: 100%;
+  border-top: 1px solid $wireframe-footer-border;
+  background: $wireframe-subtle;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity $enter-duration $enter-ease;
+}
+
+.panelVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lead {
+  margin: 0;
+  line-height: 1.45;
+  color: var(--tool-chrome-text-muted);
+  white-space: pre-wrap;
+}
+
+.bulletList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bulletItem {
+  position: relative;
+  margin: 0;
+  line-height: 1.45;
+  color: var(--tool-chrome-text-muted);
+
+  &::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--tool-chrome-icon);
+  }
+}
+
+.bulletItemInteractive {
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: color-mix(in srgb, var(--tool-chrome-blue) 6%, $wireframe-bg);
+      color: var(--tool-chrome-text-heading);
+    }
+  }
+}
+
+.bulletItemActive {
+  background: color-mix(in srgb, var(--tool-chrome-blue) 8%, $wireframe-bg);
+  color: var(--tool-chrome-text-heading);
+}
