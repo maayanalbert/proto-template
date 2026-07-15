@@ -796,11 +796,13 @@ html.prototype-theme-transition-disable :is(*, *::before, *::after) {
 
 /* Restore host prototype preview theme inside screenshot capture and source
    surfaces (component library). Fixed product values — must not inherit tool
-   theme from [data-prototype-root]. Host apps extend with --product-* tokens. */
+   theme from [data-prototype-root]. Host apps extend with --product-* tokens.
+   Theme-managed source surfaces (component-library Light/Dark toggle) are
+   excluded — semantic tokens are bridged in the block below. */
 [data-prototype-root] [data-prototype-screenshot],
 [data-prototype-screenshot],
-[data-prototype-root] [data-prototype-source-surface],
-[data-prototype-source-surface] {
+[data-prototype-root] [data-prototype-source-surface]:not([data-prototype-product-theme-managed]),
+[data-prototype-source-surface]:not([data-prototype-product-theme-managed]) {
   color-scheme: light;
 
   --font-sans:
@@ -899,13 +901,95 @@ html.prototype-theme-transition-disable :is(*, *::before, *::after) {
   background-color: var(--bg-main);
 }
 
-/* Source surfaces (component-library preview cards) pin light product tokens but
-   do NOT force a background — each card supplies its own via bg utilities
-   (bg-default → white, bg-brand, etc.) so they read as light components on the
-   dark page. */
-[data-prototype-root] [data-prototype-source-surface],
-[data-prototype-source-surface] {
+/* Source surfaces pin light product text; theme-managed surfaces use semantic bridge. */
+[data-prototype-root] [data-prototype-source-surface]:not([data-prototype-product-theme-managed]),
+[data-prototype-source-surface]:not([data-prototype-product-theme-managed]) {
   color: var(--text-primary);
+}
+
+/*
+ * Component-library product preview (theme-managed source surfaces).
+ * next-themes applies .light / .dark locally; semantic.css only derives tokens on
+ * :root, so compat utilities like bg-surface-100 would otherwise inherit dark
+ * green :root values through [data-prototype-root] tool chrome. Re-derive
+ * Supabase semantic + compat aliases here so product utilities resolve correctly.
+ */
+[data-prototype-root] [data-prototype-product-theme-managed]:is(.light, .dark, [data-theme="light"], [data-theme="dark"]),
+[data-prototype-product-theme-managed]:is(.light, .dark, [data-theme="light"], [data-theme="dark"]) {
+  --background: oklch(var(--surface) calc(var(--chroma) * 0.5) var(--surface-hue));
+  --foreground: oklch(
+    calc(var(--surface) + var(--tone-span) * var(--contrast-text)) calc(var(--chroma) * 0.55)
+      var(--surface-hue)
+  );
+  --card: oklch(from var(--background) calc(l + var(--elevation-step) * var(--elevation-1)) c h);
+  --card-foreground: var(--foreground);
+  --popover: oklch(from var(--background) calc(l + var(--elevation-step) * var(--elevation-2)) c h);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.76 0.15 var(--primary-hue));
+  --primary-foreground: oklch(
+    min(var(--surface), var(--foreground-lightness)) calc(var(--chroma) * 0.45) var(--primary-hue)
+  );
+  --secondary: oklch(
+    from var(--background) calc(l + var(--elevation-step) * var(--elevation-3)) c h
+  );
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(from var(--foreground) l c h / var(--muted-alpha));
+  --muted-foreground: oklch(
+    from var(--foreground) calc(var(--surface) + var(--tone-span) * var(--muted-foreground-mix)) c h
+  );
+  --accent: oklch(from var(--foreground) l c h / var(--accent-alpha));
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(
+    var(--destructive-lightness) var(--expressive-chroma) var(--destructive-hue)
+  );
+  --destructive-foreground: oklch(
+    from var(--destructive) clamp(0.12, calc((0.62 - l) * 100), 0.99) calc(c * 0.08) h
+  );
+  --border: oklch(
+    from var(--foreground) l calc(c * 0.54) h / calc(2% + 20% * var(--contrast-border))
+  );
+  --input: oklch(
+    from var(--foreground) l calc(c * 0.5) h / calc(3% + 38% * var(--contrast-border))
+  );
+  --ring: oklch(from var(--primary) l c h / 55%);
+
+  --foreground-default: var(--foreground);
+  --foreground-light: var(--muted-foreground);
+  --foreground-lighter: var(--tertiary-foreground);
+  --foreground-muted: var(--tertiary-foreground);
+  --background-default: var(--background);
+  --background-200: var(--card);
+  --background-surface-75: var(--card);
+  --background-surface-100: var(--card);
+  --background-surface-200: var(--muted);
+  --background-surface-300: var(--secondary);
+  --background-surface-400: var(--tertiary);
+  --border-default: var(--border);
+  --border-muted: var(--border);
+  --border-strong: var(--input);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background-surface-100: var(--background-surface-100);
+
+  color: var(--foreground);
 }
 
 [data-prototype-root] [data-prototype-screenshot] ::selection,
