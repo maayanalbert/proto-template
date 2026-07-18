@@ -1,49 +1,18 @@
 @import "tailwindcss";
+
 @source "../../node_modules/proto-plugin/src/**/*.{js,ts,jsx,tsx}";
 @source "../prototypes/**/*.{js,ts,jsx,tsx}";
-@source "../../packages/coss-ui/src/**/*.{js,ts,jsx,tsx}";
 @source "../../packages/ui/src/**/*.{js,ts,jsx,tsx}";
 @source "../../packages/ui-patterns/src/**/*.{js,ts,jsx,tsx}";
 
-@import "../../packages/coss-ui/src/styles/globals.css";
-
-/* Neutral product surface defaults (screenshot / source surfaces only). */
-@import "./product-tokens.css";
-
-/*
- * Supabase Tailwind utility generation only (bg-surface-100, text-foreground-light,
- * border-default, brand/warning/destructive scales, …). These files DO NOT tint
- * anything on :root — theme.css is just an @theme block and colors.css is a static
- * Radix palette. The actual product token VALUES are scoped per-prototype below.
- */
 @import "../../packages/config/css/colors.css";
 @import "../../packages/config/css/theme.css";
-
-/*
- * Animation tokens (--animate-panel-slide-*, overlay fades, accordion, …) and the
- * custom variants (data-open / data-closed → [data-state=open|closed]) that the UI
- * primitives rely on. SidePanel/Dialog slide-in uses
- * `data-open:animate-panel-slide-right-out`; without these imports the utilities
- * compile to nothing and shelves pop in with no animation.
- */
 @import "../../packages/config/css/animations.css";
 @import "../../packages/config/css/variants.css";
+@import "../../packages/config/typography.css";
 
-/*
- * Prototype-owned product tokens, scoped to a single prototype (like its
- * hard-coded comment-storage keys). Supabase values apply only inside
- * `.table-editor-filters-theme`; the host base stays neutral.
- */
 @import "../prototypes/table-editor-filters/table-editor-filters-theme.css";
 
-/*
-  Tool semantic colors — self-referential so utilities resolve from
-  [data-prototype-root] at runtime (see proto-plugin README).
-
-  NOTE: the shared host does NOT import a product design system globally. Cross-
-  prototype product tokens come from a linked source via `pnpm link-source` +
-  `pnpm sync-from-source` (see prototype.sync.config.sh).
-*/
 @theme inline {
   --color-foreground: var(--color-foreground);
   --color-muted-foreground: var(--color-muted-foreground);
