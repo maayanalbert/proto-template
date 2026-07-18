@@ -4,6 +4,7 @@ import {
   buildPrAgentPrompt,
   PROTOTYPE_PAGE_CLASS,
   PROTOTYPE_SCROLL_CONTAINER_CLASS,
+  PROTOTYPE_VIEWPORT_ID,
   PrototypeComponent,
   PrototypeSpecPanelContent,
   usePrototypeComments,
@@ -122,6 +123,17 @@ export default function TableEditorFiltersPage() {
   useSyncPrototypePreviewStateToUrl(liveState.previewStateId, setPreviewState, {
     validStateIds: TABLE_EDITOR_FILTERS_PREVIEW_STATE_IDS,
   });
+
+  useEffect(() => {
+    const viewport = document.getElementById(PROTOTYPE_VIEWPORT_ID);
+    if (!viewport) return;
+
+    viewport.classList.add("table-editor-filters-theme");
+
+    return () => {
+      viewport.classList.remove("table-editor-filters-theme");
+    };
+  }, []);
 
   useEffect(() => {
     return () => {

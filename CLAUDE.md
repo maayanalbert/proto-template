@@ -1,0 +1,1 @@
+node_modules/proto-plugin/AGENTS.md

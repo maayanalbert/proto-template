@@ -20,12 +20,21 @@
 @import "../../packages/config/css/theme.css";
 
 /*
+ * Animation tokens (--animate-panel-slide-*, overlay fades, accordion, …) and the
+ * custom variants (data-open / data-closed → [data-state=open|closed]) that the UI
+ * primitives rely on. SidePanel/Dialog slide-in uses
+ * `data-open:animate-panel-slide-right-out`; without these imports the utilities
+ * compile to nothing and shelves pop in with no animation.
+ */
+@import "../../packages/config/css/animations.css";
+@import "../../packages/config/css/variants.css";
+
+/*
  * Prototype-owned product tokens, scoped to a single prototype (like its
  * hard-coded comment-storage keys). Supabase values apply only inside
  * `.table-editor-filters-theme`; the host base stays neutral.
  */
 @import "../prototypes/table-editor-filters/table-editor-filters-theme.css";
-@import "../prototypes/simple-screen/simple-screen-theme.css";
 
 /*
   Tool semantic colors — self-referential so utilities resolve from

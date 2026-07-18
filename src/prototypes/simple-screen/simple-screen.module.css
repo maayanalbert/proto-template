@@ -1,4 +1,4 @@
-.simple-screen-theme {
+.theme {
   background-color: #f0f0f2;
   color: #000;
   font-family:
@@ -13,14 +13,24 @@
     sans-serif;
 }
 
-.simple-screen-theme .simple-screen-page {
-  display: flex;
-  min-height: 100%;
-  align-items: flex-start;
-  justify-content: center;
+:global([data-prototype-screenshot]) .theme {
+  background-color: #f0f0f2;
+  color: #000;
 }
 
-.simple-screen-theme .simple-screen-card {
+.view {
+  width: 100%;
+  flex: 1 1 0%;
+  overflow-y: auto;
+}
+
+.page {
+  width: 100%;
+  min-height: 100%;
+}
+
+.card {
+  box-sizing: border-box;
   width: 600px;
   max-width: calc(100% - 2rem);
   margin: 5em auto;
@@ -30,33 +40,34 @@
   box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.02);
 }
 
-.simple-screen-theme .simple-screen-heading {
+.heading {
   margin: 0 0 0.5em;
   font-size: 1.5em;
   font-weight: bold;
+  line-height: 1.2;
 }
 
-.simple-screen-theme .simple-screen-text {
+.text {
   margin: 0 0 1em;
   line-height: 1.5;
 }
 
-.simple-screen-theme .simple-screen-text:last-child {
+.text:last-child {
   margin-bottom: 0;
 }
 
-.simple-screen-theme .simple-screen-link {
+.link {
   color: #38488f;
   text-decoration: none;
 }
 
-.simple-screen-theme .simple-screen-link:hover,
-.simple-screen-theme .simple-screen-link:focus {
+.link:hover,
+.link:focus {
   text-decoration: underline;
 }
 
 @media (max-width: 700px) {
-  .simple-screen-theme .simple-screen-card {
+  .card {
     margin: 0 auto;
     width: auto;
   }

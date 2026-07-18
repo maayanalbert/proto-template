@@ -23,6 +23,7 @@ import type {
   SimpleScreenPreviewStateId,
 } from "./_components/simple-screen-types";
 import { SIMPLE_SCREEN_PREVIEW_STATE_IDS } from "./_components/simple-screen-types";
+import styles from "./simple-screen.module.css";
 
 function createDefaultLiveState(): SimpleScreenLiveState {
   return createLiveStateForPreview(DEFAULT_SIMPLE_SCREEN_PREVIEW_STATE);
@@ -59,12 +60,11 @@ export default function SimpleScreenPage() {
     <PrototypeComponent
       id="scroll-container"
       className={cn(
-        "simple-screen-theme",
+        styles.theme,
         PROTOTYPE_SCROLL_CONTAINER_CLASS,
-        "min-h-full flex-1",
       )}
     >
-      <PrototypeComponent id="page" className={cn(PROTOTYPE_PAGE_CLASS, "min-h-full flex-1")}>
+      <PrototypeComponent id="page" className={cn(PROTOTYPE_PAGE_CLASS, styles.theme)}>
         <SimpleScreenContent />
         <SimpleScreenPreviewStateSelect
           previewStateId={liveState.previewStateId}

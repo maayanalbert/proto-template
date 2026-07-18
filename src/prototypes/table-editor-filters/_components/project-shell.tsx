@@ -182,7 +182,9 @@ function SidebarNavItem({
         href="#"
       >
         <Icon size={20} strokeWidth={1.5} className="shrink-0" />
-        <span className="truncate group-data-[collapsible=icon]:hidden">{label}</span>
+        <span className="truncate opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+          {label}
+        </span>
       </a>
       {hasDot ? (
         <div className="absolute pointer-events-none flex h-2 w-2 left-[18px] top-2 z-10 rounded-full bg-destructive-600" />
@@ -199,9 +201,9 @@ export function ProductSidebar() {
       data-state="collapsed"
       data-collapsible="icon"
     >
-      <div className="absolute h-full inset-y-0 hidden md:flex left-0 w-12 border-r border-default z-50">
-        <div className="flex h-full w-full flex-col bg-sidebar">
-          <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-auto">
+      <div className="absolute h-full inset-y-0 hidden md:flex left-0 w-12 overflow-hidden border-r border-default bg-sidebar z-50 transition-[width] duration-200 ease-in-out group-hover:w-64 group-hover:shadow-xl">
+        <div className="flex h-full w-64 flex-col bg-sidebar">
+          <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
             <ul className="flex w-full min-w-0 flex-col gap-1">
               <div className="relative flex w-full min-w-0 flex-col p-2 gap-0.5">
                 {SIDEBAR_ITEMS.map((item) => (

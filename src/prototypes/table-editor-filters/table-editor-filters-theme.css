@@ -15,7 +15,16 @@
  * Do NOT hand-edit — regenerate from packages/ui/build/css if the source updates.
  */
 
+[data-prototype-screenshot].table-editor-filters-theme,
 .table-editor-filters-theme {
+  /*
+   * Corner radius. proto-plugin pins a neutral --radius:4px on
+   * [data-prototype-screenshot]; the Supabase design system calibrates its
+   * rounded-{sm,md,lg,xl} scale against --radius:0.625rem, so restore it here or
+   * corners collapse (rounded-sm → 0, rounded-md → 2px).
+   */
+  --radius: 0.625rem;
+
   /* Core semantic system (inputs + OKLCH derivations). */
   /*
    * Hue inputs. A single --hue used to drive both the neutral surface/text ramp
@@ -316,6 +325,22 @@
   --background-dialog-default: var(--popover);
   --background-dash-sidebar: var(--background);
   --background-dash-canvas: var(--background);
+
+  /*
+   * Sidebar tokens (shadcn convention). The product sidebar uses bg-sidebar,
+   * bg-sidebar-accent, text-sidebar-foreground, etc. which resolve to these
+   * --sidebar-* vars. Supabase only ships --background-dash-sidebar, so map the
+   * shadcn family onto existing semantic tokens or the sidebar stays transparent
+   * (content bleeds through when the rail expands on hover).
+   */
+  --sidebar-background: var(--background-dash-sidebar);
+  --sidebar-foreground: var(--foreground-light);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 
   /* Legacy border aliases */
   --border-default: var(--border);
