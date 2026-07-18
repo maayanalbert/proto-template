@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { createPrototypeSiteLayout } from "proto-plugin";
+import { createPrototypeSiteLayout } from "proto-plugin/server";
 import "proto-plugin/styles/globals.css";
 import { Toaster } from "sonner";
 
