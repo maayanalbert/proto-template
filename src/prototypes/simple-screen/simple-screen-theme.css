@@ -1,0 +1,63 @@
+.simple-screen-theme {
+  background-color: #f0f0f2;
+  color: #000;
+  font-family:
+    -apple-system,
+    system-ui,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Open Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+.simple-screen-theme .simple-screen-page {
+  display: flex;
+  min-height: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.simple-screen-theme .simple-screen-card {
+  width: 600px;
+  max-width: calc(100% - 2rem);
+  margin: 5em auto;
+  padding: 2em;
+  background-color: #fdfdff;
+  border-radius: 0.5em;
+  box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.02);
+}
+
+.simple-screen-theme .simple-screen-heading {
+  margin: 0 0 0.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.simple-screen-theme .simple-screen-text {
+  margin: 0 0 1em;
+  line-height: 1.5;
+}
+
+.simple-screen-theme .simple-screen-text:last-child {
+  margin-bottom: 0;
+}
+
+.simple-screen-theme .simple-screen-link {
+  color: #38488f;
+  text-decoration: none;
+}
+
+.simple-screen-theme .simple-screen-link:hover,
+.simple-screen-theme .simple-screen-link:focus {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .simple-screen-theme .simple-screen-card {
+    margin: 0 auto;
+    width: auto;
+  }
+}

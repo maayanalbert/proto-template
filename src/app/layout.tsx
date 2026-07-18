@@ -5,6 +5,7 @@ import "proto-plugin/styles/globals.css";
 import { Toaster } from "sonner";
 
 import "./globals.css";
+import { SupabaseProductTheme } from "./supabase-product-theme";
 
 const PrototypeSiteLayout = createPrototypeSiteLayout();
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full overflow-hidden antialiased`}>
       <body className="flex h-full min-h-0 flex-col overflow-hidden bg-neutral-950 text-neutral-100">
+        <SupabaseProductTheme />
         <PrototypeSiteLayout>{children}</PrototypeSiteLayout>
         <Toaster richColors position="bottom-center" />
       </body>

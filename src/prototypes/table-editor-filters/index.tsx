@@ -360,7 +360,11 @@ export default function TableEditorFiltersPage() {
   return (
     <PrototypeComponent
       id="scroll-container"
-      className={cn(PROTOTYPE_SCROLL_CONTAINER_CLASS, "bg-dash-sidebar text-default")}
+      className={cn(
+        "table-editor-filters-theme",
+        PROTOTYPE_SCROLL_CONTAINER_CLASS,
+        "bg-dash-sidebar text-default",
+      )}
     >
       <PrototypeComponent id="page" className={cn(PROTOTYPE_PAGE_CLASS, "bg-dash-sidebar")}>
         <TableEditorPage
