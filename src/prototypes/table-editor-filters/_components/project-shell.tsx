@@ -21,9 +21,11 @@ import { SqlEditorIcon } from "./table-editor-icons";
 function HeaderIconButton({
   children,
   className,
+  destructive,
 }: {
   children: ReactNode;
   className?: string;
+  destructive?: boolean;
 }) {
   return (
     <Button
@@ -32,6 +34,8 @@ function HeaderIconButton({
       size="tiny"
       className={cn(
         "rounded-full w-8 h-8 p-0 flex items-center justify-center group",
+        destructive &&
+          "bg-destructive-200 border-destructive-500 hover:bg-destructive-200",
         className,
       )}
     >
@@ -87,7 +91,7 @@ export function ProjectHeader() {
             </HeaderIconButton>
 
             <div className="relative">
-              <HeaderIconButton>
+              <HeaderIconButton destructive>
                 <Lightbulb size={16} strokeWidth={1.5} className="text-foreground-light" />
               </HeaderIconButton>
               <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-destructive" />
@@ -182,9 +186,7 @@ function SidebarNavItem({
         href="#"
       >
         <Icon size={20} strokeWidth={1.5} className="shrink-0" />
-        <span className="truncate opacity-0 transition-opacity duration-150 group-hover:opacity-100">
-          {label}
-        </span>
+        <span className="truncate group-data-[collapsible=icon]:hidden">{label}</span>
       </a>
       {hasDot ? (
         <div className="absolute pointer-events-none flex h-2 w-2 left-[18px] top-2 z-10 rounded-full bg-destructive-600" />
@@ -201,9 +203,9 @@ export function ProductSidebar() {
       data-state="collapsed"
       data-collapsible="icon"
     >
-      <div className="absolute h-full inset-y-0 hidden md:flex left-0 w-12 overflow-hidden border-r border-default bg-sidebar z-50 transition-[width] duration-200 ease-in-out group-hover:w-64 group-hover:shadow-xl">
-        <div className="flex h-full w-64 flex-col bg-sidebar">
-          <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
+      <div className="absolute h-full inset-y-0 hidden md:flex left-0 w-12 border-r border-default z-50">
+        <div className="flex h-full w-full flex-col bg-sidebar">
+          <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-auto">
             <ul className="flex w-full min-w-0 flex-col gap-1">
               <div className="relative flex w-full min-w-0 flex-col p-2 gap-0.5">
                 {SIDEBAR_ITEMS.map((item) => (

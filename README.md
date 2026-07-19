@@ -2,7 +2,7 @@
 
 Neutral starter host for [**proto-plugin**](https://www.npmjs.com/package/proto-plugin) — shareable UI prototypes without a synced product design system.
 
-Includes one example prototype (`event-types`) built with plain Tailwind and small local UI primitives. Use it as a starting point, then add your own prototypes under `src/prototypes/`.
+Includes two example prototypes — the Supabase table editor (`table-editor-filters`) and the Proto partner page (`proto-partner-page`). Use them as starting points, then add your own prototypes under `src/prototypes/`.
 
 ## Quick start
 
@@ -38,13 +38,7 @@ See `node_modules/proto-plugin/README.md` and `AGENTS.md` for the full host setu
 | `pnpm verify:prototype-preview-states` | Check preview state registries |
 | `pnpm share-prototype <slug>` | Deploy a prototype preview |
 
-## Example prototype
+## Example prototypes
 
-`src/prototypes/event-types/` demonstrates:
-
-- Live state + preview states + state map
-- Design explorations (variant sets)
-- PR split spec panel
-- Comment anchoring via `PrototypeComponent`
-
-UI primitives live in `_components/neutral-ui.tsx` — replace or extend these when you add your product look.
+- `src/prototypes/table-editor-filters/` — Supabase table editor with preview states, design explorations, PR split spec panel, and side shelves.
+- `src/prototypes/proto-partner-page/` — Multi-route partner invite flow with shape customizer and design explorations.

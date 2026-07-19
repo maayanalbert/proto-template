@@ -2,6 +2,10 @@ import { createPrototypePage, createPrototypeStateMapPage } from "proto-plugin";
 import { notFound } from "next/navigation";
 
 import prototypeConfig from "../../../../../prototype.config";
+import {
+  PARTNER_PAGE_PROTOTYPE_SLUG,
+  PARTNER_PAGE_STATIC_SEGMENTS,
+} from "../../../../prototypes/proto-partner-page/partner-page-routes";
 
 const prototypePage = createPrototypePage(prototypeConfig);
 const stateMapPage = createPrototypeStateMapPage(prototypeConfig);
@@ -11,13 +15,26 @@ type PrototypeRoutePageProps = {
 };
 
 export function generateStaticParams() {
-  return prototypePage.generateStaticParams().flatMap(({ slug }) => [
-    { slug, page: undefined },
-    { slug, page: ["states"] as string[] },
-  ]);
+  const prototypeParams = prototypePage.generateStaticParams().flatMap(({ slug }) => {
+    const stateMapParam = { slug, page: ["states"] as string[] };
+
+    if (slug === PARTNER_PAGE_PROTOTYPE_SLUG) {
+      return [
+        { slug, page: undefined },
+        stateMapParam,
+        ...PARTNER_PAGE_STATIC_SEGMENTS.map((page) => ({ slug, page })),
+      ];
+    }
+
+    return [{ slug, page: undefined }, stateMapParam];
+  });
+
+  return prototypeParams;
 }
 
-export default async function PrototypeRoutePage({ params }: PrototypeRoutePageProps) {
+export default async function PrototypeRoutePage({
+  params,
+}: PrototypeRoutePageProps) {
   const { slug, page } = await params;
 
   if (page?.length === 1 && page[0] === "states") {
@@ -25,7 +42,16 @@ export default async function PrototypeRoutePage({ params }: PrototypeRoutePageP
   }
 
   if (page && page.length > 0) {
-    notFound();
+    if (slug !== PARTNER_PAGE_PROTOTYPE_SLUG) {
+      notFound();
+    }
+
+    if (
+      page.length > 1 ||
+      !PARTNER_PAGE_STATIC_SEGMENTS.some(([segment]) => segment === page[0])
+    ) {
+      notFound();
+    }
   }
 
   return prototypePage.default({ params: Promise.resolve({ slug }) });

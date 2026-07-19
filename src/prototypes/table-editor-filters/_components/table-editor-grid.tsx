@@ -554,10 +554,7 @@ export function TableEditorGrid({
                   icon={<EllipsisVertical size={14} strokeWidth={2} />}
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-48 bg-surface-100 text-foreground border-default"
-              >
+              <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem onClick={onTruncateTable}>
                   Truncate table
                 </DropdownMenuItem>
@@ -585,7 +582,7 @@ export function TableEditorGrid({
                   type="button"
                   variant="primary"
                   size="tiny"
-                  className="text-xs px-2.5 py-1 h-[26px] border-strong hover:border-stronger dark:border-strong dark:hover:border-stronger data-[state=open]:border-stronger"
+                  className="text-xs px-2.5 py-1 h-[26px]"
                   icon={
                     <ChevronDown
                       size={14}
@@ -597,10 +594,7 @@ export function TableEditorGrid({
                   Insert
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-44 bg-surface-100 text-foreground border-default"
-              >
+              <DropdownMenuContent align="end" className="w-44">
                 <DropdownMenuItem onClick={onOpenInsertRow}>
                   Insert row
                 </DropdownMenuItem>

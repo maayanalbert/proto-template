@@ -1,0 +1,20 @@
+/*
+ * Product tokens for proto-partner-page — scoped to this prototype only.
+ *
+ * proto-plugin's generic [data-prototype-screenshot] fallbacks map --foreground
+ * to --color-gray-900 (~56% grey). The synced source light theme uses
+ * --foreground-lightness: 0.1 (near-black). Restore that here so text-foreground
+ * reads as black on white invite/customize surfaces.
+ */
+[data-prototype-screenshot].proto-partner-page-theme,
+.proto-partner-page-theme {
+  --text-primary: oklch(0.1 0 34);
+  --foreground: var(--text-primary);
+  --color-foreground: var(--foreground);
+  --color-text-primary: var(--text-primary);
+
+  --text-secondary: oklch(0.45 0 34);
+  --muted-foreground: var(--text-secondary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-text-secondary: var(--text-secondary);
+}
