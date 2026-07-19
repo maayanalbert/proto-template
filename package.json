@@ -24,7 +24,7 @@
     "motion": "^12.42.0",
     "next": "16.2.9",
     "next-themes": "catalog:",
-    "proto-plugin": "^0.1.46",
+    "proto-plugin": "^0.1.48",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "recharts": "^3.9.2",
