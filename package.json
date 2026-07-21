@@ -14,7 +14,12 @@
     "verify:prototype-ids": "pnpm --dir node_modules/proto-plugin verify:prototype-ids",
     "verify:prototype-preview-states": "pnpm --dir node_modules/proto-plugin verify:prototype-preview-states",
     "share-prototype": "pnpm --dir node_modules/proto-plugin share-prototype",
-    "setup-host": "pnpm --dir node_modules/proto-plugin setup-host"
+    "setup-host": "pnpm --dir node_modules/proto-plugin setup-host",
+    "verify:source-linked": "test -L source && test -f .env.local && grep -q '^SOURCE_PATH=' .env.local",
+    "verify:workspace-profile": "test -f .env.local && grep -q '^PROTOTYPE_USER_NAME=' .env.local",
+    "verify:onboarded": "node node_modules/proto-plugin/scripts/verify-bootstrap-flag.mjs onboarded",
+    "verify:bootstrap-status": "node node_modules/proto-plugin/scripts/verify-bootstrap-status.mjs",
+    "verify:design-system-loaded": "node node_modules/proto-plugin/scripts/verify-bootstrap-flag.mjs design-system-loaded"
   },
   "dependencies": {
     "@base-ui/react": "1.0.0",
@@ -24,7 +29,7 @@
     "motion": "^12.42.0",
     "next": "16.2.9",
     "next-themes": "catalog:",
-    "proto-plugin": "^0.1.51",
+    "proto-plugin": "0.1.52",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "recharts": "^3.9.2",
