@@ -5,6 +5,9 @@ import { protoPartnerPageComponentRegistry } from "./src/prototypes/proto-partne
 import TableEditorFilters from "./src/prototypes/table-editor-filters";
 import { tableEditorFiltersComponentRegistry } from "./src/prototypes/table-editor-filters/component-ids";
 import TableEditorFiltersStateMapPage from "./src/prototypes/table-editor-filters/state-map-page";
+import EventTypes from "./src/prototypes/event-types";
+import { eventTypesComponentRegistry } from "./src/prototypes/event-types/component-ids";
+import EventTypesStateMapPage from "./src/prototypes/event-types/state-map-page";
 
 export default definePrototypeConfig({
   prototypes: [
@@ -22,6 +25,14 @@ export default definePrototypeConfig({
       component: TableEditorFilters,
       componentRegistry: tableEditorFiltersComponentRegistry,
       stateMapComponent: TableEditorFiltersStateMapPage,
+    },
+    {
+      slug: "event-types",
+      title: "Event types",
+      screenshot: "/prototypes/screenshots/event-types.png",
+      component: EventTypes,
+      componentRegistry: eventTypesComponentRegistry,
+      stateMapComponent: EventTypesStateMapPage,
     },
   ],
 });

@@ -3,22 +3,40 @@
 import { PreviewGrid } from "proto-plugin";
 import type { ReactNode } from "react";
 
+type TokenValueFormat = "hsl-components" | "color" | "unknown";
+
+function swatchBackgroundExpression(format: TokenValueFormat, sourceVar: string): string {
+  if (format === "hsl-components") return `hsl(var(${sourceVar}))`;
+  return `var(${sourceVar})`;
+}
+
 function TokenSwatch({
   name,
-  variable,
+  sourceVar,
+  displayVar,
+  format,
+  required = false,
 }: {
   name: string;
-  variable: string;
+  sourceVar: string;
+  displayVar: string;
+  format: TokenValueFormat;
+  required?: boolean;
 }): ReactNode {
   return (
     <div className="flex flex-col items-center gap-2">
       <div
-        className="w-full aspect-square rounded-lg border"
-        style={{ backgroundColor: `var(${variable})` as any }}
+        data-token-swatch=""
+        data-token-name={name}
+        data-token-var={sourceVar}
+        data-token-format={format}
+        data-token-required={required ? "true" : "false"}
+        className="w-full aspect-square rounded-lg border border-border"
+        style={{ backgroundColor: swatchBackgroundExpression(format, sourceVar) }}
       />
       <div className="text-xs font-medium text-center">
         <div>{name}</div>
-        <div className="text-muted-foreground">{variable}</div>
+        <div className="text-muted-foreground">{displayVar}</div>
       </div>
     </div>
   );
@@ -27,24 +45,24 @@ function TokenSwatch({
 export function TokensSection() {
   return (
     <div id="tokens" className="space-y-8">
+      {/* 14 semantic tokens from 9 CSS source(s) — see .proto/design-system-tokens.json */}
       <div>
         <h3 className="font-semibold mb-4">Semantic Colors</h3>
         <PreviewGrid>
-          <TokenSwatch name="Background" variable="--color-background" />
-          <TokenSwatch name="Foreground" variable="--color-foreground" />
-          <TokenSwatch name="Primary" variable="--color-primary" />
-          <TokenSwatch name="Secondary" variable="--color-secondary" />
-          <TokenSwatch name="Border" variable="--color-border" />
-          <TokenSwatch name="Destructive" variable="--color-destructive" />
-          <TokenSwatch name="Muted" variable="--color-muted" />
-          <TokenSwatch name="Accent" variable="--color-accent" />
-          <TokenSwatch name="Card" variable="--color-card" />
-          <TokenSwatch name="Popover" variable="--color-popover" />
-          <TokenSwatch name="Tertiary" variable="--color-tertiary" />
-          <TokenSwatch name="Warning" variable="--color-warning" />
-          <TokenSwatch name="Info" variable="--color-info" />
-          <TokenSwatch name="Input" variable="--color-input" />
-          <TokenSwatch name="Ring" variable="--color-ring" />
+          <TokenSwatch name="Background" sourceVar="--background" format="color" displayVar="--background" required />
+          <TokenSwatch name="Foreground" sourceVar="--foreground" format="color" displayVar="--foreground" required />
+          <TokenSwatch name="Primary" sourceVar="--primary" format="color" displayVar="--primary" required />
+          <TokenSwatch name="Secondary" sourceVar="--secondary" format="unknown" displayVar="--secondary" required />
+          <TokenSwatch name="Border" sourceVar="--border" format="unknown" displayVar="--border" required />
+          <TokenSwatch name="Destructive" sourceVar="--destructive" format="color" displayVar="--destructive" required />
+          <TokenSwatch name="Muted" sourceVar="--muted" format="unknown" displayVar="--muted" required />
+          <TokenSwatch name="Accent" sourceVar="--accent" format="unknown" displayVar="--accent" required />
+          <TokenSwatch name="Card" sourceVar="--card" format="color" displayVar="--card" />
+          <TokenSwatch name="Popover" sourceVar="--popover" format="color" displayVar="--popover" />
+          <TokenSwatch name="Warning" sourceVar="--warning" format="color" displayVar="--warning" />
+          <TokenSwatch name="Info" sourceVar="--info" format="color" displayVar="--info" />
+          <TokenSwatch name="Input" sourceVar="--input" format="unknown" displayVar="--input" />
+          <TokenSwatch name="Ring" sourceVar="--ring" format="color" displayVar="--ring" />
         </PreviewGrid>
       </div>
     </div>

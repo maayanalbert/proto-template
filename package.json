@@ -19,7 +19,9 @@
     "verify:workspace-profile": "test -f .env.local && grep -q '^PROTOTYPE_USER_NAME=' .env.local",
     "verify:onboarded": "node node_modules/proto-plugin/scripts/verify-bootstrap-flag.mjs onboarded",
     "verify:bootstrap-status": "node node_modules/proto-plugin/scripts/verify-bootstrap-status.mjs",
-    "verify:design-system-loaded": "node node_modules/proto-plugin/scripts/verify-bootstrap-flag.mjs design-system-loaded"
+    "verify:design-system-loaded": "node node_modules/proto-plugin/scripts/verify-bootstrap-flag.mjs design-system-loaded",
+    "verify:design-system-static": "node node_modules/proto-plugin/scripts/verify-design-system-static.mjs",
+    "verify:design-system-visual": "node node_modules/proto-plugin/scripts/verify-design-system-visual.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.0.0",
@@ -45,6 +47,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "playwright": "^1.61.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

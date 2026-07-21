@@ -1,0 +1,72 @@
+[
+  {
+    "name": "background",
+    "variable": "--background",
+    "format": "color"
+  },
+  {
+    "name": "foreground",
+    "variable": "--foreground",
+    "format": "color"
+  },
+  {
+    "name": "primary",
+    "variable": "--primary",
+    "format": "color"
+  },
+  {
+    "name": "secondary",
+    "variable": "--secondary",
+    "format": "unknown"
+  },
+  {
+    "name": "border",
+    "variable": "--border",
+    "format": "unknown"
+  },
+  {
+    "name": "destructive",
+    "variable": "--destructive",
+    "format": "color"
+  },
+  {
+    "name": "muted",
+    "variable": "--muted",
+    "format": "unknown"
+  },
+  {
+    "name": "accent",
+    "variable": "--accent",
+    "format": "unknown"
+  },
+  {
+    "name": "card",
+    "variable": "--card",
+    "format": "color"
+  },
+  {
+    "name": "popover",
+    "variable": "--popover",
+    "format": "color"
+  },
+  {
+    "name": "warning",
+    "variable": "--warning",
+    "format": "color"
+  },
+  {
+    "name": "info",
+    "variable": "--info",
+    "format": "color"
+  },
+  {
+    "name": "input",
+    "variable": "--input",
+    "format": "unknown"
+  },
+  {
+    "name": "ring",
+    "variable": "--ring",
+    "format": "color"
+  }
+]
